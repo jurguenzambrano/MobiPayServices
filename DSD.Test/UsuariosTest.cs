@@ -24,7 +24,7 @@ namespace UsuariosTest
             // Prueba de creación de usuario 
             usuario = "{\"Apellidos\":\"ZAMBRANO\",\"Celular\":\"992330838\",\"Direccion\":\"su casa\",\"Dni\":\"10243090\",\"Mail\":\"jurguenzambrano@gmail.com\",\"Nombres\":\"Jurguen\",\"Estado\":\"0\",\"Clave\":\"perico\"}";
             data = Encoding.UTF8.GetBytes(usuario);
-
+            /*
             req = (HttpWebRequest)WebRequest.Create("http://mobipayservice.apphb.com/UsuariosService.svc/usuarios");
             req.Method = "POST";
             req.ContentLength = data.Length;
@@ -222,7 +222,7 @@ namespace UsuariosTest
                 js = new JavaScriptSerializer();
                 string mensaje = js.Deserialize<string>(error);
                 Assert.AreEqual("Correo Electrónico no registrado", mensaje);
-            }
+            }*/
         }
     }
 }
