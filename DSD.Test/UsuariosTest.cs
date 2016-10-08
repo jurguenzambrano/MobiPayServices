@@ -25,7 +25,7 @@ namespace UsuariosTest
             usuario = "{\"Apellidos\":\"ZAMBRANO\",\"Celular\":\"992330838\",\"Direccion\":\"su casa\",\"Dni\":\"10243090\",\"Mail\":\"jurguenzambrano@gmail.com\",\"Nombres\":\"Jurguen\",\"Estado\":\"0\",\"Clave\":\"perico\"}";
             data = Encoding.UTF8.GetBytes(usuario);
 
-            req = (HttpWebRequest)WebRequest.Create("http://sistemas.apphb.com/UsuariosService.svc/usuarios");
+            req = (HttpWebRequest)WebRequest.Create("http://mobipayservice.apphb.com/UsuariosService.svc/usuarios");
             req.Method = "POST";
             req.ContentLength = data.Length;
             req.ContentType = "application/json";
@@ -68,7 +68,7 @@ namespace UsuariosTest
             usuario = "{\"Apellidos\":\"ZAMBRANO\",\"Celular\":\"992330838\",\"Direccion\":\"su casa\",\"Dni\":\"10243091\",\"Mail\":\"jurguenzambrano@gmail.com\",\"Nombres\":\"Jurguen\",\"Estado\":\"0\",\"Clave\":\"perico\"}";
             data = Encoding.UTF8.GetBytes(usuario);
 
-            req = (HttpWebRequest)WebRequest.Create("http://sistemas.apphb.com/UsuariosService.svc/usuarios");
+            req = (HttpWebRequest)WebRequest.Create("http://mobipayservice.apphb.com/UsuariosService.svc/usuarios");
             req.Method = "POST";
             req.ContentLength = data.Length;
             req.ContentType = "application/json";
@@ -111,7 +111,7 @@ namespace UsuariosTest
             usuario = "{\"Mail\":\"jurguenzambrano@gmail.com\",\"Clave\":\"perico\"}";
             data = Encoding.UTF8.GetBytes(usuario);
 
-            req = (HttpWebRequest)WebRequest.Create("http://sistemas.apphb.com/AccesosService.svc/accesos");
+            req = (HttpWebRequest)WebRequest.Create("http://mobipayservice.apphb.com/AccesosService.svc/accesos");
             req.Method = "POST";
             req.ContentLength = data.Length;
             req.ContentType = "application/json";
@@ -154,7 +154,7 @@ namespace UsuariosTest
             usuario = "{\"Mail\":\"jurguenzambrano@gmail.com\",\"Clave\":\"pericod\"}";
             data = Encoding.UTF8.GetBytes(usuario);
 
-            req = (HttpWebRequest)WebRequest.Create("http://sistemas.apphb.com/AccesosService.svc/accesos");
+            req = (HttpWebRequest)WebRequest.Create("http://mobipayservice.apphb.com/AccesosService.svc/accesos");
             req.Method = "POST";
             req.ContentLength = data.Length;
             req.ContentType = "application/json";
@@ -197,7 +197,7 @@ namespace UsuariosTest
             usuario = "{\"Mail\":\"jurguenzambranosss@gmail.com\",\"Clave\":\"perico\"}";
             data = Encoding.UTF8.GetBytes(usuario);
 
-            req = (HttpWebRequest)WebRequest.Create("http://sistemas.apphb.com/AccesosService.svc/accesos");
+            req = (HttpWebRequest)WebRequest.Create("http://mobipayservice.apphb.com/AccesosService.svc/accesos");
             req.Method = "POST";
             req.ContentLength = data.Length;
             req.ContentType = "application/json";
