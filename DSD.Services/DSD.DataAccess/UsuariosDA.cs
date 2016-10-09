@@ -65,7 +65,7 @@ namespace DSD.DataAccess
                                 Celular = (string)resultado["Celular"],
                                 Mail = (string)resultado["Mail"],
                                 Estado = (string)resultado["Estado"],
-                                Clave = (string)resultado["Clave"],
+                                Clave = "",
                                 Codigocliente = (string)resultado["CodigoCliente"],
                                 MontoMaximo = (decimal)resultado["MontoMaximo"],
                                 Saldo = (decimal)resultado["Saldo"]
@@ -103,7 +103,7 @@ namespace DSD.DataAccess
                                 Celular = (string)resultado["Celular"],
                                 Mail = (string)resultado["Mail"],
                                 Estado = (string)resultado["Estado"],
-                                Clave = (string)resultado["Clave"],
+                                Clave = "",
                                 Codigocliente = (string)resultado["CodigoCliente"],
                                 MontoMaximo = (decimal)resultado["MontoMaximo"],
                                 Saldo = (decimal)resultado["Saldo"]
@@ -141,7 +141,7 @@ namespace DSD.DataAccess
                                 Celular = (string)resultado["Celular"],
                                 Mail = (string)resultado["Mail"],
                                 Estado = (string)resultado["Estado"],
-                                Clave = (string)resultado["Clave"],
+                                Clave = "",
                                 Codigocliente = (string)resultado["CodigoCliente"],
                                 MontoMaximo = (decimal)resultado["MontoMaximo"],
                                 Saldo = (decimal)resultado["Saldo"]

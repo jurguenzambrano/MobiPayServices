@@ -51,9 +51,14 @@ namespace DSD.Services
 
         public UsuarioBE ModificarUsuario(UsuarioBE usuarioAModificar)
         {
-            if (usuarioDao.Obtener(usuarioAModificar.Dni) == null)
+            UsuarioBE usuario = usuarioDao.Obtener(usuarioAModificar.Dni);
+            if (usuario == null)
             {
-                throw new WebFaultException<string>("Usuario no existe", HttpStatusCode.InternalServerError);
+                throw new WebFaultException<string>("Usuario no registrado", HttpStatusCode.InternalServerError);
+            }
+            if(usuario.Clave != usuarioAModificar.Clave)
+            {
+                throw new WebFaultException<string>("La clave no coincide", HttpStatusCode.InternalServerError);
             }
             else
             {
@@ -65,7 +70,7 @@ namespace DSD.Services
         {
             if (usuarioDao.Obtener(dni) == null)
             {
-                throw new WebFaultException<string>("Usuario no existe", HttpStatusCode.InternalServerError);
+                throw new WebFaultException<string>("Usuario no registrado", HttpStatusCode.InternalServerError);
             }
             else
             {
