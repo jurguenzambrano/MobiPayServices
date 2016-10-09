@@ -14,6 +14,7 @@ namespace DSD.Services
     {
         [OperationContract]
         UsuariosBE getUser(Nullable<Guid> gBanco, string xCodigoUsuario);
+
         [OperationContract]
         MovimientosBE refillwallet(Nullable<Guid> gBanco, string xCodigoUsuario, string xOperacionBanco, decimal mMonto);
     }

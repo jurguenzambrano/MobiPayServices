@@ -63,7 +63,7 @@
   <ItemGroup>
     <Content Include="AccesosService.svc" />
     <Content Include="BankOperation.svc" />
-    <Content Include="Service1.svc" />
+    <Content Include="MonederosService.svc" />
     <Content Include="UsuariosService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -75,32 +75,38 @@
       <DependentUpon>BankOperation.svc</DependentUpon>
     </Compile>
     <Compile Include="DSD.Adapters\SqlServer.cs" />
+    <Compile Include="DSD.BusinessEntity\ExtornoBE.cs" />
     <Compile Include="DSD.BusinessEntity\MensajesBE.cs" />
+    <Compile Include="DSD.BusinessEntity\MovimientoBE.cs" />
     <Compile Include="DSD.BusinessEntity\MovimientosBE.cs" />
+    <Compile Include="DSD.BusinessEntity\PagoBE.cs" />
+    <Compile Include="DSD.BusinessEntity\RecargaBE.cs" />
     <Compile Include="DSD.BusinessEntity\UsuarioBE.cs" />
     <Compile Include="DSD.BusinessEntity\UsuariosBE.cs" />
     <Compile Include="DSD.BusinessLogic\BankBL.cs" />
     <Compile Include="DSD.BusinessLogic\BusinessBL.cs" />
     <Compile Include="DSD.BusinessLogic\MobipayBL.cs" />
+    <Compile Include="DSD.BusinessEntity\SaldoBE.cs" />
     <Compile Include="DSD.DataAccess\BankDA.cs" />
     <Compile Include="DSD.DataAccess\BusinessDA.cs" />
     <Compile Include="DSD.DataAccess\MobipayDA.cs" />
+    <Compile Include="DSD.DataAccess\MovimientosDA.cs" />
     <Compile Include="DSD.DataAccess\UsuariosDA.cs" />
+    <Compile Include="DSD.Exceptions\MessageException.cs" />
     <Compile Include="IAccesosService.cs" />
     <Compile Include="IBankOperation.cs" />
-    <Compile Include="IService1.cs" />
+    <Compile Include="IMonederosService.cs" />
     <Compile Include="IUsuariosService.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service1.svc.cs">
-      <DependentUpon>Service1.svc</DependentUpon>
+    <Compile Include="MonederosService.svc.cs">
+      <DependentUpon>MonederosService.svc</DependentUpon>
     </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsuariosService.svc.cs">
       <DependentUpon>UsuariosService.svc</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="DSD.Exceptions\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Web.Debug.config">

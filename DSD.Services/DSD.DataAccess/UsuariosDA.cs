@@ -15,7 +15,10 @@ namespace DSD.DataAccess
         public UsuarioBE Crear(UsuarioBE usuarioACrear)
         {
             UsuarioBE usuarioCreado = null;
-            string sql = "INSERT INTO TB_USUARIO (dni,apellidos,nombres,direccion,celular,mail,estado,clave) VALUES (@Dni, @Apellidos, @Nombres, @Direccion, @Celular, @Mail, @Estado, @Clave)";
+            //UPPER(SUBSTRING(apellidos, 1, 2)) + substring(dni, 3, 4) + UPPER(SUBSTRING(nombres, 1, 2))
+            usuarioACrear.Codigocliente = usuarioACrear.Apellidos.Substring(0, 2) + usuarioACrear.Dni.Substring(2, 4) + usuarioACrear.Nombres.Substring(2, 2);
+            //usuarioACrear.Codigocliente = "poe";
+            string sql = "INSERT INTO TB_USUARIO (dni,apellidos,nombres,direccion,celular,mail,estado,clave,codigocliente,montomaximo) VALUES (@Dni, @Apellidos, @Nombres, @Direccion, @Celular, @Mail, @Estado, @Clave, @CodigoCliente, @MontoMaximo)";
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
                 conexion.Open();
@@ -24,12 +27,13 @@ namespace DSD.DataAccess
                     comando.Parameters.Add(new SqlParameter("@Dni", usuarioACrear.Dni));
                     comando.Parameters.Add(new SqlParameter("@Apellidos", usuarioACrear.Apellidos));
                     comando.Parameters.Add(new SqlParameter("@Nombres", usuarioACrear.Nombres));
-                    //comando.Parameters.Add(new SqlParameter("@FechaEmision", usuarioACrear.FechaEmision));
                     comando.Parameters.Add(new SqlParameter("@Direccion", usuarioACrear.Direccion));
                     comando.Parameters.Add(new SqlParameter("@Celular", usuarioACrear.Celular));
                     comando.Parameters.Add(new SqlParameter("@Mail", usuarioACrear.Mail));
                     comando.Parameters.Add(new SqlParameter("@Estado", "0"));
                     comando.Parameters.Add(new SqlParameter("@Clave", usuarioACrear.Clave));
+                    comando.Parameters.Add(new SqlParameter("@CodigoCliente", usuarioACrear.Codigocliente));
+                    comando.Parameters.Add(new SqlParameter("@MontoMaximo", 50m));
                     comando.ExecuteNonQuery();
                 }
             }
@@ -40,7 +44,7 @@ namespace DSD.DataAccess
         public UsuarioBE Obtener(string dni)
         {
             UsuarioBE usuarioEncontrado = null;
-            string sql = "SELECT * FROM TB_USUARIO WHERE DNI = @Dni";
+            string sql = "SELECT * FROM VW_USUARIO WHERE DNI = @Dni";
 
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
@@ -57,12 +61,14 @@ namespace DSD.DataAccess
                                 Dni = (string)resultado["dni"],
                                 Apellidos = (string)resultado["apellidos"],
                                 Nombres = (string)resultado["Nombres"],
-                                //FechaEmision = (DateTime) resultado["FechaEmision"],
                                 Direccion = (string)resultado["Direccion"],
                                 Celular = (string)resultado["Celular"],
                                 Mail = (string)resultado["Mail"],
                                 Estado = (string)resultado["Estado"],
-                                Clave = (string)resultado["Clave"]
+                                Clave = (string)resultado["Clave"],
+                                Codigocliente = (string)resultado["CodigoCliente"],
+                                MontoMaximo = (decimal)resultado["MontoMaximo"],
+                                Saldo = (decimal)resultado["Saldo"]
                             };
 
                         }
@@ -76,7 +82,7 @@ namespace DSD.DataAccess
         public UsuarioBE ObtenerPorEmail(string email)
         {
             UsuarioBE usuarioEncontrado = null;
-            string sql = "SELECT * FROM TB_USUARIO WHERE MAIL = @Mail";
+            string sql = "SELECT * FROM VW_USUARIO WHERE MAIL = @Mail";
 
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
@@ -93,12 +99,52 @@ namespace DSD.DataAccess
                                 Dni = (string)resultado["dni"],
                                 Apellidos = (string)resultado["apellidos"],
                                 Nombres = (string)resultado["Nombres"],
-                                //FechaEmision = (DateTime) resultado["FechaEmision"],
                                 Direccion = (string)resultado["Direccion"],
                                 Celular = (string)resultado["Celular"],
                                 Mail = (string)resultado["Mail"],
                                 Estado = (string)resultado["Estado"],
-                                Clave = (string)resultado["Clave"]
+                                Clave = (string)resultado["Clave"],
+                                Codigocliente = (string)resultado["CodigoCliente"],
+                                MontoMaximo = (decimal)resultado["MontoMaximo"],
+                                Saldo = (decimal)resultado["Saldo"]
+                            };
+
+                        }
+                    }
+                }
+            }
+
+            return usuarioEncontrado;
+        }
+
+        public UsuarioBE ObtenerPorCodigoCliente(string codigoCliente)
+        {
+            UsuarioBE usuarioEncontrado = null;
+            string sql = "SELECT * FROM VW_USUARIO WHERE CODIGOCLIENTE = @CodigoCliente";
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                conexion.Open();
+                using (SqlCommand comando = new SqlCommand(sql, conexion))
+                {
+                    comando.Parameters.Add(new SqlParameter("@CodigoCliente", codigoCliente));
+                    using (SqlDataReader resultado = comando.ExecuteReader())
+                    {
+                        if (resultado.Read())
+                        {
+                            usuarioEncontrado = new UsuarioBE()
+                            {
+                                Dni = (string)resultado["dni"],
+                                Apellidos = (string)resultado["apellidos"],
+                                Nombres = (string)resultado["Nombres"],
+                                Direccion = (string)resultado["Direccion"],
+                                Celular = (string)resultado["Celular"],
+                                Mail = (string)resultado["Mail"],
+                                Estado = (string)resultado["Estado"],
+                                Clave = (string)resultado["Clave"],
+                                Codigocliente = (string)resultado["CodigoCliente"],
+                                MontoMaximo = (decimal)resultado["MontoMaximo"],
+                                Saldo = (decimal)resultado["Saldo"]
                             };
 
                         }
@@ -112,7 +158,7 @@ namespace DSD.DataAccess
         public UsuarioBE Modificar(UsuarioBE usuarioAModificar)
         {
             UsuarioBE usuarioModificado = null;
-            string sql = "UPDATE TB_USUARIO set Apellidos = @Apellidos, Nombres = @Nombres, Direccion = @Direccion, Celular = @Celular, Mail = @Mail, Clave = @Clave, Estado = @Estado WHERE dni = @Dni";
+            string sql = "UPDATE TB_USUARIO set Apellidos = @Apellidos, Nombres = @Nombres, Direccion = @Direccion, Celular = @Celular, Clave = @Clave, Estado = @Estado, MontoMaximo = @MontoMaximo WHERE dni = @Dni";
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
                 conexion.Open();
@@ -121,12 +167,12 @@ namespace DSD.DataAccess
                     comando.Parameters.Add(new SqlParameter("@Dni", usuarioAModificar.Dni));
                     comando.Parameters.Add(new SqlParameter("@Apellidos", usuarioAModificar.Apellidos));
                     comando.Parameters.Add(new SqlParameter("@Nombres", usuarioAModificar.Nombres));
-                    //comando.Parameters.Add(new SqlParameter("@FechaEmision", usuarioAModificar.FechaEmision));
                     comando.Parameters.Add(new SqlParameter("@Direccion", usuarioAModificar.Direccion));
                     comando.Parameters.Add(new SqlParameter("@Celular", usuarioAModificar.Celular));
                     comando.Parameters.Add(new SqlParameter("@Mail", usuarioAModificar.Mail));
                     comando.Parameters.Add(new SqlParameter("@Estado", usuarioAModificar.Estado));
                     comando.Parameters.Add(new SqlParameter("@Clave", usuarioAModificar.Clave));
+                    comando.Parameters.Add(new SqlParameter("@MontoMaximo", usuarioAModificar.MontoMaximo));
                     comando.ExecuteNonQuery();
                 }
             }
@@ -165,7 +211,6 @@ namespace DSD.DataAccess
                                 Dni = (string)resultado["dni"],
                                 Apellidos = (string)resultado["dni"],
                                 Nombres = (string)resultado["Nombres"],
-                                //FechaEmision = (DateTime)resultado["FechaEmision"],
                                 Direccion = (string)resultado["Direccion"],
                                 Celular = (string)resultado["Celular"],
                                 Mail = (string)resultado["Mail"]
@@ -198,12 +243,13 @@ namespace DSD.DataAccess
                                 Dni = (string)resultado["dni"],
                                 Apellidos = (string)resultado["dni"],
                                 Nombres = (string)resultado["Nombres"],
-                                //FechaEmision = (DateTime)resultado["FechaEmision"],
                                 Direccion = (string)resultado["Direccion"],
                                 Celular = (string)resultado["Celular"],
                                 Mail = (string)resultado["Mail"],
                                 Estado = (string)resultado["Estado"],
-                                Clave = (string)resultado["Clave"]
+                                Clave = (string)resultado["Clave"],
+                                Codigocliente = (string)resultado["CodigoCliente"],
+                                MontoMaximo = (decimal)resultado["MontoMaximo"]
                             };
                             usuariosEncontrados.Add(usuarioEncontrado);
                         }

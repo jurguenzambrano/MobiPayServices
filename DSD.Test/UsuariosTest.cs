@@ -22,9 +22,9 @@ namespace UsuariosTest
             JavaScriptSerializer js;
 
             // Prueba de creación de usuario 
-            usuario = "{\"Apellidos\":\"ZAMBRANO\",\"Celular\":\"992330838\",\"Direccion\":\"su casa\",\"Dni\":\"10243090\",\"Mail\":\"jurguenzambrano@gmail.com\",\"Nombres\":\"Jurguen\",\"Estado\":\"0\",\"Clave\":\"perico\"}";
+            usuario = "{\"Apellidos\":\"ZAMBRANO\",\"Celular\":\"992330838\",\"Direccion\":\"su casa\",\"Dni\":\"10243093\",\"Mail\":\"perico@gmail.com\",\"Nombres\":\"Jurguen\",\"Estado\":\"0\",\"Clave\":\"perico\"}";
             data = Encoding.UTF8.GetBytes(usuario);
-            /*
+            
             req = (HttpWebRequest)WebRequest.Create("http://mobipayservice.apphb.com/UsuariosService.svc/usuarios");
             req.Method = "POST";
             req.ContentLength = data.Length;
@@ -38,7 +38,7 @@ namespace UsuariosTest
                 usuarioJson = reader.ReadToEnd();
                 js = new JavaScriptSerializer();
                 Usuario usuarioCreado = js.Deserialize<Usuario>(usuarioJson);
-                Assert.AreEqual("10243090", usuarioCreado.Dni);
+                Assert.AreEqual("10243093", usuarioCreado.Dni);
                 Assert.AreEqual("ZAMBRANO", usuarioCreado.Apellidos);
             }
             catch (WebException e)
@@ -52,7 +52,7 @@ namespace UsuariosTest
                 Assert.AreEqual("Número de DNI ya registrado", mensaje);
             }
         }
-
+        
         [TestMethod]
         public void insertarUsuarioDuplicado()
         {
@@ -222,7 +222,7 @@ namespace UsuariosTest
                 js = new JavaScriptSerializer();
                 string mensaje = js.Deserialize<string>(error);
                 Assert.AreEqual("Correo Electrónico no registrado", mensaje);
-            }*/
+            }
         }
     }
 }

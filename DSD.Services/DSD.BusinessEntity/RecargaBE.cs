@@ -4,16 +4,10 @@ using System.Runtime.Serialization;
 namespace DSD.BusinessEntity
 {
     [DataContract]
-    public class MovimientosBE:MensajesBE
+    public class RecargaBE
     {
         [DataMember]
         public string CodigoCliente { get; set; }
-
-        [DataMember]
-        public string Tipo { get; set; }
-
-        [DataMember]
-        public DateTime Fecha { get; set; }
 
         [DataMember]
         public decimal Monto { get; set; }

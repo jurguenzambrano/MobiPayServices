@@ -16,12 +16,12 @@ namespace DSD.Services
             {
                 throw new WebFaultException<string>("Número de DNI ya registrado", HttpStatusCode.InternalServerError);
             }
-
+            
             if (usuarioDao.ObtenerPorEmail(usuarioACrear.Mail) != null)
             {
                 throw new WebFaultException<string>("Correo electrónico ya registrado", HttpStatusCode.InternalServerError);
             }
-
+           
             /*
             NotificacionService ns = new NotificacionService();
             string mensajeConfirmacion = "Hola " + usuarioACrear.Nombres + " " + usuarioACrear.Apellidos;
@@ -30,6 +30,7 @@ namespace DSD.Services
             mensajeConfirmacion = mensajeConfirmacion + "<br/><br/>MobiPay";
             ns.EnviarCorreo(usuarioACrear.Mail, "Confirma tu cuenta", mensajeConfirmacion);
             */
+
             return usuarioDao.Crear(usuarioACrear);
         }
 

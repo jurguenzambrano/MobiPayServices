@@ -34,5 +34,14 @@ namespace DSD.BusinessEntity
 
         [DataMember]
         public string Clave { get; set; }
+
+        [DataMember]
+        public string Codigocliente { get; set; }
+
+        [DataMember]
+        public decimal MontoMaximo { get; set; }
+
+        [DataMember]
+        public decimal Saldo { get; set; }
     }
 }

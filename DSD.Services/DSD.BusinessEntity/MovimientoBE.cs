@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace DSD.BusinessEntity
 {
     [DataContract]
-    public class MovimientosBE:MensajesBE
+    public class MovimientoBE
     {
         [DataMember]
         public string CodigoCliente { get; set; }
