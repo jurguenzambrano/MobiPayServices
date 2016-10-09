@@ -179,6 +179,7 @@ namespace DSD.DataAccess
             usuarioModificado = Obtener(usuarioAModificar.Dni);
             return usuarioModificado;
         }
+
         public void Eliminar(string dni)
         {
             string sql = "DELETE TB_USUARIO WHERE DNI = @Dni";

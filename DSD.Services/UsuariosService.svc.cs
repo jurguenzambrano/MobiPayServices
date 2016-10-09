@@ -60,10 +60,8 @@ namespace DSD.Services
             {
                 throw new WebFaultException<string>("La clave no coincide", HttpStatusCode.InternalServerError);
             }
-            else
-            {
-                return usuarioDao.Modificar(usuarioAModificar);
-            }
+            usuarioAModificar.Estado = usuario.Estado;
+            return usuarioDao.Modificar(usuarioAModificar);
         }
 
         public void EliminarUsuario(string dni)
