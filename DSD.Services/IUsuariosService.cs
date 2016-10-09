@@ -29,6 +29,10 @@ namespace DSD.Services
         void EliminarUsuario(string dni);
 
         [OperationContract]
+        [WebInvoke(Method = "GET", UriTemplate = "usuarios/{dni}/movimientos", ResponseFormat = WebMessageFormat.Json)]
+        List<MovimientoBE> ListarMovimientos(string dni);
+
+        [OperationContract]
         List<UsuarioBE> Listar();
     }
 }

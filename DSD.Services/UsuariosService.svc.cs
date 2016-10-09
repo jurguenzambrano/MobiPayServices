@@ -3,12 +3,14 @@ using DSD.DataAccess;
 using System.Collections.Generic;
 using System.Net;
 using System.ServiceModel.Web;
+using System;
 
 namespace DSD.Services
 {
     public class UsuariosService : IUsuariosService
     {
         private UsuariosDA usuarioDao = new UsuariosDA();
+        private MovimientosDA movimientoDao = new MovimientosDA();
 
         public UsuarioBE CrearUsuario(UsuarioBE usuarioACrear)
         {
@@ -74,6 +76,11 @@ namespace DSD.Services
         public List<UsuarioBE> Listar()
         {
             return usuarioDao.Listar();
+        }
+
+        public List<MovimientoBE> ListarMovimientos(string dni)
+        {
+            return movimientoDao.ListarPorDni(dni);
         }
     }
 }

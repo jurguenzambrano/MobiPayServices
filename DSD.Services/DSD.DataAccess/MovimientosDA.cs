@@ -50,7 +50,7 @@ namespace DSD.DataAccess
                             {
                                 CodigoCliente = (string)resultado["CodigoCliente"],
                                 Tipo = (string)resultado["Tipo"],
-                                Fecha = (DateTime)resultado["Fecha"],
+                                Fecha = (string)resultado["Fecha"],
                                 Monto = (decimal)resultado["Monto"],
                                 OperacionBanco = (string)resultado["OperacionBanco"],
                                 Operacion = (int)resultado["Operacion"]
@@ -83,7 +83,7 @@ namespace DSD.DataAccess
                             {
                                 CodigoCliente = (string)resultado["CodigoCliente"],
                                 Tipo = (string)resultado["Tipo"],
-                                Fecha = (DateTime)resultado["Fecha"],
+                                Fecha = (string)resultado["Fecha"],
                                 Monto = (decimal)resultado["Monto"],
                                 OperacionBanco = (string)resultado["OperacionBanco"],
                                 Operacion = (int)resultado["Operacion"]
@@ -94,6 +94,38 @@ namespace DSD.DataAccess
                 }
             }
             return movimientoEncontrado;
+        }
+
+        public List<MovimientoBE> ListarPorDni(String dni)
+        {
+            List<MovimientoBE> usuariosEncontrados = new List<MovimientoBE>();
+            MovimientoBE usuarioEncontrado = null;
+            string sql = "SELECT * FROM VW_MOVIMIENTO WHERE DNI = @dni ORDER BY FECHA DESC, OPERACION DESC";
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                conexion.Open();
+                using (SqlCommand comando = new SqlCommand(sql, conexion))
+                {
+                    comando.Parameters.Add(new SqlParameter("@dni", dni));
+                    using (SqlDataReader resultado = comando.ExecuteReader())
+                    {
+                        while (resultado.Read())
+                        {
+                            usuarioEncontrado = new MovimientoBE()
+                            {
+                                Tipo = (string)resultado["Tipo"],
+                                CodigoCliente = (string)resultado["CodigoCliente"],
+                                Fecha = (string)resultado["Fecha"],
+                                Monto = (decimal)resultado["Monto"],
+                                Operacion = (int)resultado["Operacion"],
+                                OperacionBanco = (string)resultado["OperacionBanco"]
+                            };
+                            usuariosEncontrados.Add(usuarioEncontrado);
+                        }
+                    }
+                }
+            }
+            return usuariosEncontrados;
         }
     }
 }

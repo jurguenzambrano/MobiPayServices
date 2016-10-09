@@ -13,7 +13,7 @@ namespace DSD.BusinessEntity
         public string Tipo { get; set; }
 
         [DataMember]
-        public DateTime Fecha { get; set; }
+        public string Fecha { get; set; }
 
         [DataMember]
         public decimal Monto { get; set; }
