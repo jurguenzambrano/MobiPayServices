@@ -33,7 +33,7 @@ namespace DSD.DataAccess
                     comando.Parameters.Add(new SqlParameter("@Estado", "0"));
                     comando.Parameters.Add(new SqlParameter("@Clave", usuarioACrear.Clave));
                     comando.Parameters.Add(new SqlParameter("@CodigoCliente", usuarioACrear.Codigocliente));
-                    comando.Parameters.Add(new SqlParameter("@MontoMaximo", 50m));
+                    comando.Parameters.Add(new SqlParameter("@MontoMaximo", 100m));
                     comando.ExecuteNonQuery();
                 }
             }
