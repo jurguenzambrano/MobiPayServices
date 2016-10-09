@@ -61,6 +61,7 @@ namespace DSD.Services
                 throw new WebFaultException<string>("La clave no coincide", HttpStatusCode.InternalServerError);
             }
             usuarioAModificar.Estado = usuario.Estado;
+            usuarioAModificar.MontoMaximo = usuario.MontoMaximo;
             return usuarioDao.Modificar(usuarioAModificar);
         }
 
