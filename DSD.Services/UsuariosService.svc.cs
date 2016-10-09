@@ -71,7 +71,7 @@ namespace DSD.Services
             }
         }
 
-        public List<UsuarioBE> ListarUsuario()
+        public List<UsuarioBE> Listar()
         {
             return usuarioDao.Listar();
         }

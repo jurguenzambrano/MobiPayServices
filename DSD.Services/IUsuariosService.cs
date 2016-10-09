@@ -29,6 +29,6 @@ namespace DSD.Services
         void EliminarUsuario(string dni);
 
         [OperationContract]
-        List<UsuarioBE> ListarUsuario();
+        List<UsuarioBE> Listar();
     }
 }
