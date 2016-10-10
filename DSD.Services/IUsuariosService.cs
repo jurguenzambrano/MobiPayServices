@@ -21,6 +21,10 @@ namespace DSD.Services
         UsuarioBE ObtenerUsuario(string dni);
 
         [OperationContract]
+        [WebInvoke(Method = "GET", UriTemplate = "codigoCliente/{codigoCliente}", ResponseFormat = WebMessageFormat.Json)]
+        UsuarioBE ObtenerUsuarioPorCodigoCliente(string codigoCliente);
+
+        [OperationContract]
         [WebInvoke(Method = "PUT", UriTemplate = "usuarios", ResponseFormat = WebMessageFormat.Json)]
         UsuarioBE ModificarUsuario(UsuarioBE usuarioAModificar);
 

@@ -49,6 +49,20 @@ namespace DSD.Services
             }
         }
 
+        public UsuarioBE ObtenerUsuarioPorCodigoCliente(string codigoCliente) {
+
+            UsuarioBE usuario = usuarioDao.ObtenerUsuarioPorCodigoCliente(codigoCliente);
+            if (usuario == null)
+            {
+                throw new WebFaultException<string>("Usuario no registrado", HttpStatusCode.InternalServerError);
+            }
+            else
+            {
+                return usuario;
+            }
+        }
+
+
         public UsuarioBE ModificarUsuario(UsuarioBE usuarioAModificar)
         {
             UsuarioBE usuario = usuarioDao.Obtener(usuarioAModificar.Dni);
