@@ -79,6 +79,43 @@ namespace DSD.DataAccess
             return usuarioEncontrado;
         }
 
+        public UsuarioBE ObtenerUsuarioPorCodigoCliente(string codigoCliente)
+        {
+            UsuarioBE usuarioEncontrado = null;
+            string sql = "SELECT * FROM VW_USUARIO WHERE codigocliente  = @codigoCliente";
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                conexion.Open();
+                using (SqlCommand comando = new SqlCommand(sql, conexion))
+                {
+                    comando.Parameters.Add(new SqlParameter("@codigoCliente", codigoCliente));
+                    using (SqlDataReader resultado = comando.ExecuteReader())
+                    {
+                        if (resultado.Read())
+                        {
+                            usuarioEncontrado = new UsuarioBE()
+                            {
+                                Dni = (string)resultado["dni"],
+                                Apellidos = (string)resultado["apellidos"],
+                                Nombres = (string)resultado["Nombres"],
+                                Direccion = (string)resultado["Direccion"],
+                                Celular = (string)resultado["Celular"],
+                                Mail = (string)resultado["Mail"],
+                                Estado = (string)resultado["Estado"],
+                                Clave = (string)resultado["Clave"],
+                                Codigocliente = (string)resultado["CodigoCliente"],
+                                MontoMaximo = (decimal)resultado["MontoMaximo"],
+                                Saldo = (decimal)resultado["Saldo"]
+                            };
+
+                        }
+                    }
+                }
+            }
+
+            return usuarioEncontrado;
+        }
         public UsuarioBE ObtenerPorEmail(string email)
         {
             UsuarioBE usuarioEncontrado = null;
