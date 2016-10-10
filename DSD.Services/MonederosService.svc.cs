@@ -45,12 +45,15 @@ namespace DSD.WCF.Services
             movimiento.OperacionBanco = recarga.OperacionBanco;
             movimiento.Tipo = "R";
             movimiento.Monto = recarga.Monto;
+
+
+
             return movimientoDA.Crear(movimiento);
         }
 
         public MovimientoBE Extornar(ExtornoBE extorno)
         {
-            MovimientoBE movimientoBE = movimientoDA.ObtenerPorClienteOperacion(extorno.CodigoCliente, extorno.OperacionBanco);
+            MovimientoBE movimientoBE = movimientoDA.ObtenerPorClienteOperacion(extorno.CodigoCliente, extorno.OperacionBancoExtorno);
             if (movimientoBE == null)
             {
                 throw new FaultException<MessageException>(
@@ -108,8 +111,8 @@ namespace DSD.WCF.Services
             MovimientoBE movimiento = new MovimientoBE();
             movimiento.CodigoCliente = pago.CodigoCliente;
             movimiento.OperacionBanco = pago.OperacionBanco;
-            movimiento.Tipo = "R";
-            movimiento.Monto = pago.Monto;
+            movimiento.Tipo = "P";
+            movimiento.Monto = pago.Monto * -1;
             return movimientoDA.Crear(movimiento);
         }
 

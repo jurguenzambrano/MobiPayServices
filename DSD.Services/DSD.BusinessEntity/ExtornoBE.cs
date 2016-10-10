@@ -10,9 +10,12 @@ namespace DSD.BusinessEntity
         public string CodigoCliente { get; set; }
 
         [DataMember]
-        public string OperacionBanco { get; set; }
+        public string OperacionBancoExtorno { get; set; }
 
         [DataMember]
         public decimal Monto { get; set; }
+
+        [DataMember]
+        public string OperacionBanco { get; set; }
     }
 }

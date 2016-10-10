@@ -34,7 +34,7 @@ namespace DSD.DataAccess
         public MovimientoBE Obtener(string operacionBanco)
         {
             MovimientoBE movimientoEncontrado = null;
-            string sql = "SELECT * FROM TB_MOVIMIENTO WHERE OPERACIONBANCO = @OperacionBanco";
+            string sql = "SELECT * FROM VW_MOVIMIENTO WHERE OPERACIONBANCO = @OperacionBanco";
 
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
@@ -66,7 +66,7 @@ namespace DSD.DataAccess
         public MovimientoBE ObtenerPorClienteOperacion(string codigoCliente, string operacionBanco)
         {
             MovimientoBE movimientoEncontrado = null;
-            string sql = "SELECT * FROM TB_MOVIMIENTO WHERE CODIGOCLIENTE =@CodigoCliente AND OPERACIONBANCO = @OperacionBanco";
+            string sql = "SELECT * FROM VW_MOVIMIENTO WHERE CODIGOCLIENTE =@CodigoCliente AND OPERACIONBANCO = @OperacionBanco";
 
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {

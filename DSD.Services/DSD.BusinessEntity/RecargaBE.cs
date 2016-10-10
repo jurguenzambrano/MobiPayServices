@@ -14,8 +14,5 @@ namespace DSD.BusinessEntity
 
         [DataMember]
         public string OperacionBanco { get; set; }
-
-        [DataMember]
-        public int Operacion { get; set; }
     }
 }
