@@ -127,5 +127,37 @@ namespace DSD.DataAccess
             }
             return usuariosEncontrados;
         }
+
+        public List<MovimientoBE> ListarPorCodigoCliente(String codigoCliente)
+        {
+            List<MovimientoBE> usuariosEncontrados = new List<MovimientoBE>();
+            MovimientoBE usuarioEncontrado = null;
+            string sql = "SELECT * FROM VW_MOVIMIENTO WHERE CODIGOCLIENTE = @codigoCliente ORDER BY FECHA DESC, OPERACION DESC";
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                conexion.Open();
+                using (SqlCommand comando = new SqlCommand(sql, conexion))
+                {
+                    comando.Parameters.Add(new SqlParameter("@codigoCliente", codigoCliente));
+                    using (SqlDataReader resultado = comando.ExecuteReader())
+                    {
+                        while (resultado.Read())
+                        {
+                            usuarioEncontrado = new MovimientoBE()
+                            {
+                                Tipo = (string)resultado["Tipo"],
+                                CodigoCliente = (string)resultado["CodigoCliente"],
+                                Fecha = (string)resultado["Fecha"],
+                                Monto = (decimal)resultado["Monto"],
+                                Operacion = (int)resultado["Operacion"],
+                                OperacionBanco = (string)resultado["OperacionBanco"]
+                            };
+                            usuariosEncontrados.Add(usuarioEncontrado);
+                        }
+                    }
+                }
+            }
+            return usuariosEncontrados;
+        }
     }
 }

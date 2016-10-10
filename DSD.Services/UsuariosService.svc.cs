@@ -4,6 +4,11 @@ using System.Collections.Generic;
 using System.Net;
 using System.ServiceModel.Web;
 using System;
+using RabbitMQ.Client;
+using RabbitMQ.Client.MessagePatterns;
+using System.Text;
+using System.Web.Script.Serialization;
+using RabbitMQ.Client.Events;
 
 namespace DSD.Services
 {
@@ -96,9 +101,53 @@ namespace DSD.Services
             return usuarioDao.Listar();
         }
 
-        public List<MovimientoBE> ListarMovimientos(string dni)
+        public List<MovimientoBE> ListarMovimientos(string codigoCliente)
         {
-            return movimientoDao.ListarPorDni(dni);
+            UsuarioBE usuario = usuarioDao.ObtenerUsuarioPorCodigoCliente(codigoCliente);
+            if (usuario == null)
+            {
+                throw new WebFaultException<string>("Usuario no registrado", HttpStatusCode.InternalServerError);
+            }
+
+            // Rabbit
+            ConnectionFactory connFactory = new ConnectionFactory
+            {
+                Uri = "amqp://qvirgsox:vqt2pyCczubvjAU_QtYB5aEQYUOGOj8D@wildboar.rmq.cloudamqp.com/qvirgsox"
+            };
+            
+            using (var conn = connFactory.CreateConnection())
+            using (var channel = conn.CreateModel())
+            {
+                channel.QueueDeclare("RECARGAS", false, false, false, null);
+
+                var subscription = new Subscription(channel, "RECARGAS");
+                
+                while (true)
+                {
+                    BasicDeliverEventArgs eventArgs;
+                    var gotMessage = subscription.Next(250, out eventArgs);
+
+                    if (gotMessage)
+                    {
+                        var text = Encoding.UTF8.GetString(eventArgs.Body);
+                        JavaScriptSerializer js = new JavaScriptSerializer();
+                        MovimientoBE movimientoCola = js.Deserialize<MovimientoBE>(text);
+
+                        movimientoDao.Crear(movimientoCola);
+                        if (eventArgs == null)
+                        {
+                            continue;
+                        }
+                        subscription.Ack();
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+            
+            return movimientoDao.ListarPorCodigoCliente(codigoCliente);
         }
     }
 }

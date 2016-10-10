@@ -50,11 +50,8 @@ namespace DSD.WCF.Services
             movimiento.Fecha = DateTime.Now.ToString("yyyy/mm/dd");
 
             // Rabbit
-            //amqp://uqemuxrl:hoEllP2A9Fa0C0XBvx7lK3zmEyrmIwoz@wildboar.rmq.cloudamqp.com/uqemuxrl
             ConnectionFactory connFactory = new ConnectionFactory
             {
-                // AppSettings["CLOUDAMQP_URL"] contains the connection string
-                // when you've added the CloudAMQP Addon
                 Uri = "amqp://qvirgsox:vqt2pyCczubvjAU_QtYB5aEQYUOGOj8D@wildboar.rmq.cloudamqp.com/qvirgsox"
             };
 
