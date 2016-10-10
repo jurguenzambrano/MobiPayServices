@@ -7,6 +7,8 @@ using System.Text;
 using DSD.BusinessEntity;
 using DSD.DataAccess;
 using DSD.Exceptions;
+using RabbitMQ.Client;
+using System.Web.Script.Serialization;
 
 namespace DSD.WCF.Services
 {
@@ -45,10 +47,36 @@ namespace DSD.WCF.Services
             movimiento.OperacionBanco = recarga.OperacionBanco;
             movimiento.Tipo = "R";
             movimiento.Monto = recarga.Monto;
+            movimiento.Fecha = DateTime.Now.ToString("yyyy/mm/dd");
 
+            // Rabbit
+            //amqp://uqemuxrl:hoEllP2A9Fa0C0XBvx7lK3zmEyrmIwoz@wildboar.rmq.cloudamqp.com/uqemuxrl
+            ConnectionFactory connFactory = new ConnectionFactory
+            {
+                // AppSettings["CLOUDAMQP_URL"] contains the connection string
+                // when you've added the CloudAMQP Addon
+                Uri = "amqp://qvirgsox:vqt2pyCczubvjAU_QtYB5aEQYUOGOj8D@wildboar.rmq.cloudamqp.com/qvirgsox"
+            };
 
+            using (var conn = connFactory.CreateConnection())
+            using (var channel = conn.CreateModel()) // Note, don't share channels between threads
+            {
+                var message = new MovimientoBE() {CodigoCliente = movimiento.CodigoCliente, Tipo = movimiento.Tipo, Monto = movimiento.Monto, OperacionBanco = movimiento.OperacionBanco, Fecha = movimiento.Fecha };
+                //"Mensaje obtenido desde RabbitMQ";
 
-            return movimientoDA.Crear(movimiento);
+                JavaScriptSerializer js = new JavaScriptSerializer();
+
+                // the data put on the queue must be a byte array
+                var data = Encoding.UTF8.GetBytes(js.Serialize(message));
+
+                // ensure that the queue exists before we publish to it
+                channel.QueueDeclare("RECARGAS", false, false, false, null);
+
+                // publish to the "default exchange", with the queue name as the routing key
+                channel.BasicPublish("", "RECARGAS", null, data);
+            }
+
+            return movimiento; // movimientoDA.Crear(movimiento);
         }
 
         public MovimientoBE Extornar(ExtornoBE extorno)
