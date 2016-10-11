@@ -14,3 +14,6 @@ Barriga Rivera, Juan Pedro - Blog
 
 Ynoñan Rodriguez, Jamie Alvaro - Blog
 (https://dsdsoa.wordpress.com)
+
+Puma Cerón, Roger Jesús - Blog
+(http://rogerpuma.net23.net/)
