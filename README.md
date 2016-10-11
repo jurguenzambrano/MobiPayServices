@@ -11,3 +11,6 @@ Zambrano Moreno, Jurguen Miguel - Blog
 
 Barriga Rivera, Juan Pedro - Blog
 (https://juanp1812.wordpress.com)
+
+Ynoñan Rodriguez, Jamie Alvaro - Blog
+(https://dsdsoa.wordpress.com)
