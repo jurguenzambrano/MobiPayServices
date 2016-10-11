@@ -7,7 +7,7 @@ Sistemas Distribuidos
 ##Integrantes:
 
 Zambrano Moreno, Jurguen Miguel - Blog
-[Pensndo en Soa](http://pensandoensoa.wordpress.com)
+[Pensando en Soa](http://pensandoensoa.wordpress.com)
 
 Barriga Rivera, Juan Pedro - Blog
 (https://juanp1812.wordpress.com)
