@@ -1,8 +1,6 @@
-# MobiPayServices
+# MobiPay Services
 
-
-
-Sistemas Distribuidos
+El proyecto presenta una propuesta de Monedero Electrónico, con el cual se fomenta el pago a través de plataformas online sin el uso de una tarjeta de crédito. Además, el sistema expondrá servicios para diferentes entidades bancarias donde se podrán realizar las consultas, recargas y extornos de las operaciones con el fin de presentar al usuario una solución integral.
 
 ##Integrantes:
 
