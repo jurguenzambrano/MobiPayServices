@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSD.Services", "DSD.Services\DSD.Services.csproj", "{40B91D1E-19ED-45C2-BF70-652B1610544F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsuariosTest", "DSD.Test\UsuariosTest.csproj", "{DC69CB94-DDF6-4663-9C87-E36A46B710FB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{40B91D1E-19ED-45C2-BF70-652B1610544F} = {40B91D1E-19ED-45C2-BF70-652B1610544F}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

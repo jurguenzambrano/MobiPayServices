@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="3b574693-0501-423a-a1b0-a723870e740a" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="eb5d0f23-8cae-4faf-815b-cadb85180f3f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,11 @@
     <MetadataSource Address="http://mobipayservice.apphb.com/MonederosService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="MonederosService.xsd" MetadataType="Schema" ID="7704d961-5c56-4719-abdf-9d726416517b" SourceId="1" SourceUrl="http://mobipayservice.apphb.com/MonederosService.svc?xsd=xsd1" />
-    <MetadataFile FileName="MonederosService.disco" MetadataType="Disco" ID="430ccc1f-c06e-4bf2-988b-d968fea27047" SourceId="1" SourceUrl="http://mobipayservice.apphb.com/MonederosService.svc?disco" />
-    <MetadataFile FileName="MonederosService1.xsd" MetadataType="Schema" ID="e9c3791f-be12-4688-9a84-450fd75b9e66" SourceId="1" SourceUrl="http://mobipayservice.apphb.com/MonederosService.svc?xsd=xsd0" />
-    <MetadataFile FileName="MonederosService.wsdl" MetadataType="Wsdl" ID="5e87e24c-2ca9-4d23-86f4-3fe77df88efb" SourceId="1" SourceUrl="http://mobipayservice.apphb.com/MonederosService.svc?wsdl" />
-    <MetadataFile FileName="MonederosService2.xsd" MetadataType="Schema" ID="6d7a73b1-4828-471c-9252-96de02051fff" SourceId="1" SourceUrl="http://mobipayservice.apphb.com/MonederosService.svc?xsd=xsd2" />
+    <MetadataFile FileName="MonederosService.xsd" MetadataType="Schema" ID="a5f22811-df9d-4305-a55d-a5f8ab86b41f" SourceId="1" SourceUrl="http://mobipayservice.apphb.com/MonederosService.svc?xsd=xsd1" />
+    <MetadataFile FileName="MonederosService.disco" MetadataType="Disco" ID="3224c813-dc4d-415b-a3b8-0340dbe85a09" SourceId="1" SourceUrl="http://mobipayservice.apphb.com/MonederosService.svc?disco" />
+    <MetadataFile FileName="MonederosService1.xsd" MetadataType="Schema" ID="1fdd8c7f-c771-492e-bf1e-6499c06e7664" SourceId="1" SourceUrl="http://mobipayservice.apphb.com/MonederosService.svc?xsd=xsd0" />
+    <MetadataFile FileName="MonederosService.wsdl" MetadataType="Wsdl" ID="f28550b4-b4be-4f23-924a-1f4521efaa47" SourceId="1" SourceUrl="http://mobipayservice.apphb.com/MonederosService.svc?wsdl" />
+    <MetadataFile FileName="MonederosService2.xsd" MetadataType="Schema" ID="0d08e472-4835-4a3b-84b7-e1a643aebb38" SourceId="1" SourceUrl="http://mobipayservice.apphb.com/MonederosService.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

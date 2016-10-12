@@ -33,12 +33,13 @@ namespace UsuariosTest
             try
             {
                 MonederoService.MonederosServiceClient proxy = new MonederoService.MonederosServiceClient();
-                MonederoService.MovimientoBE movimiento = new MonederoService.MovimientoBE()
+                MonederoService.RecargaBE recarga = new MonederoService.RecargaBE()
                 {
-                    CodigoCliente = "codigonoexiste",
+                    CodigoCliente = "codigonoexisteSSSSSSS",
                     Monto = 10,
                     OperacionBanco = "R",
                 };
+                MonederoService.MovimientoBE movimiento = proxy.Recargar(recarga);
             }
             catch (Exception e)
             {
@@ -52,12 +53,13 @@ namespace UsuariosTest
             try
             {
                 MonederoService.MonederosServiceClient proxy = new MonederoService.MonederosServiceClient();
-                MonederoService.MovimientoBE movimiento = new MonederoService.MovimientoBE()
+                MonederoService.RecargaBE recarga = new MonederoService.RecargaBE()
                 {
                     CodigoCliente = "011016000001",
                     Monto = 1000000000,
                     OperacionBanco = "R",
                 };
+                MonederoService.MovimientoBE movimiento = proxy.Recargar(recarga);
             }
             catch (Exception e)
             {
