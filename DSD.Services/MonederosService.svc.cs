@@ -67,10 +67,10 @@ namespace DSD.WCF.Services
                 var data = Encoding.UTF8.GetBytes(js.Serialize(message));
 
                 // ensure that the queue exists before we publish to it
-                channel.QueueDeclare("RECARGAS", false, false, false, null);
+                channel.QueueDeclare("RECARGAS"+ recarga.CodigoCliente, false, false, false, null);
 
                 // publish to the "default exchange", with the queue name as the routing key
-                channel.BasicPublish("", "RECARGAS", null, data);
+                channel.BasicPublish("", "RECARGAS"+ recarga.CodigoCliente, null, data);
             }
 
             return movimiento; // movimientoDA.Crear(movimiento);

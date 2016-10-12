@@ -178,7 +178,8 @@ namespace UsuariosTest
                 string error = reader.ReadToEnd();
                 js = new JavaScriptSerializer();
                 string mensaje = js.Deserialize<string>(error);
-                Assert.AreEqual("Usuario no confirmado", mensaje);
+                //Assert.AreEqual("Usuario no confirmado", mensaje);
+                Assert.AreEqual("Clave incorrecta", mensaje);
             }
         }
 

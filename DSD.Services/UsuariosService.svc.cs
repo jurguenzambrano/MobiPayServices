@@ -118,9 +118,9 @@ namespace DSD.Services
             using (var conn = connFactory.CreateConnection())
             using (var channel = conn.CreateModel())
             {
-                channel.QueueDeclare("RECARGAS", false, false, false, null);
+                channel.QueueDeclare("RECARGAS"+ codigoCliente, false, false, false, null);
 
-                var subscription = new Subscription(channel, "RECARGAS");
+                var subscription = new Subscription(channel, "RECARGAS"+ codigoCliente);
                 
                 while (true)
                 {
